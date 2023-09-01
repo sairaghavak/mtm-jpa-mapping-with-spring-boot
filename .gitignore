@@ -1,3 +1,10 @@
+# Ignore setup files
+.devcontainer
+.m2
+target
+mtm-db.mv.db
+mtm-db.trace.db
+
 # Compiled class file
 *.class
 
