@@ -4,11 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
@@ -31,8 +34,12 @@ public class Actor {
   @Column(name = "name")
   private String name;
 
-  @ManyToMany(mappedBy = "actors")
+  @ManyToMany(cascade = CascadeType.ALL)
   // Not recommended to add fetch = FetchType.EAGER here
+  @JoinTable(
+      name = "film_actor",
+      joinColumns = {@JoinColumn(name = "actor_id_fk", referencedColumnName = "actor_id_pk")},
+      inverseJoinColumns = {@JoinColumn(name = "film_id_fk", referencedColumnName = "film_id_pk")})
   private Set<Film> films = new HashSet<>();
 
   public Actor(String name) {

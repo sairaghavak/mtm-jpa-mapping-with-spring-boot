@@ -22,10 +22,23 @@ public class SpringBootMainClass {
     Actor actor1 = new Actor("Leonardo DiCaprio");
     Actor actor2 = new Actor("Matt Damon");
 
-    Film film1 = new Film("The Revenant", actor1);
-    Film film2 = new Film("The Departed", actor1, actor2);
-    Film film3 = new Film("Jason Bourne", actor2);
+    Film film1 = new Film("The Revenant");
+    Film film2 = new Film("The Departed");
+    Film film3 = new Film("Jason Bourne");
 
+    /*- Save films via actor */
+    /*
+    actor1.addFilm(film1);
+    actor1.addFilm(film2);
+    actor2.addFilm(film2);
+    actor2.addFilm(film3);
+    actorRepository.saveAll(Arrays.asList(actor1, actor2)); */
+
+    /*- Save actors via film */
+    film1.addActor(actor1);
+    film2.addActor(actor1);
+    film2.addActor(actor2);
+    film3.addActor(actor2);
     filmRepository.saveAll(Arrays.asList(film1, film2, film3));
 
     /*- BiDirectional Relationship verification */
